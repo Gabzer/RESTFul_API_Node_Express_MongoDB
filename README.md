@@ -11,3 +11,9 @@
  ```text
  mongod
  ```
+
+#Config
+
+```text
+npm install
+```
