@@ -72,7 +72,43 @@ router.route('/usuarios')
                 res.send(err);
             res.json(usuarios);
         });
+    });
+
+router.route('/usuarios/:usuario_id')
+
+    /* 3)Método: Selecionar Por Id (acessar em: GET http://localhost:8080/api/usuarios/:usuario_id) */
+    .get(function(req, res) {
+
+        //Função para Selecionar Por Id e verificar se há algum erro:
+        Usuario.findById(req.params.usuario_id, function(error, usuario) {
+            if(error)
+                res.send(error);
+            res.json(usuario);
+        });
     })
+
+    /* 4)Método: Atualizar (acessar em: PUT http://localhost:8080/api/usuarios/:usuario_id) */
+    .put(function(req, res) {
+
+        //Primeiro: Para atualizarmos, precisamos primeiro achar o Usuario. Para isso, vamos selecionar por id:
+        Usuario.findById(req.params.usuario_id, function(error, usuario) {
+            if(error)
+                res.send(error);
+            
+            //Segundo: Diferente do Selecionar Por Id... a resposta será a atribuição do que encontramos na classe modelo:
+            usuario.nome = req.body.nome;
+            usuario.login = req.body.login;
+            usuario.senha = req.body.senha;
+
+            //Terceiro: Agora que já atualizamos os campos, precisamos salvar essa lateração...
+            usuario.save(function(error) {
+                if(error)
+                    res.send(error);
+
+                res.json({ message: 'Usuário Atualizado!' });
+            });
+        });
+    });
  
 /* Todas as nossas rotas serão prefixadas com '/api' */
 app.use('/api', router);

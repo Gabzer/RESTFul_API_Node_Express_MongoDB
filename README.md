@@ -17,3 +17,9 @@
 ```text
 npm install
 ```
+
+#Start node Server
+
+```text
+node server.js
+```
