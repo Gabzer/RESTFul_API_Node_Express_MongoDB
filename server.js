@@ -13,7 +13,7 @@ var express     = require('express');      //chamando o pacote express
 var app         = express();               //definção da nossa aplicação através do express
 var bodyParser  = require('body-parser');  //chamando o pacote body-parser
 var mongoose    = require('mongoose');
-var Usuario     = require('./models/usuario');
+var Usuario     = require('./app/models/usuario');
 
 mongoose.connect('mongodb://localhost/node-api'); //via MongoDB
  

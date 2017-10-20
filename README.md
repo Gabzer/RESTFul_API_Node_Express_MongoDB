@@ -23,3 +23,6 @@ npm install
 ```text
 node server.js
 ```
+
+Falta fazer:
+git push --tags origin master
